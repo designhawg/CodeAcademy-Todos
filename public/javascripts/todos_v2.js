@@ -1,24 +1,27 @@
 var Todo = {
-    init: function() {
-      console.log('init todos');            
-    },
-    
-    clickListener: function() {
-        
-        $("#submit").bind('click', function(e) {
-          e.preventDefault();
-          var value = $("#todo").val();
-          
-        });        
-    },
-    
-    addItem: function(value) {
-      var template = "<li>"+value+"</li>";
-      $("#todos").html(template);
-    },
-    
-    getValue: function() {
-      var value = $("#todo").val();
-      return value;            
-    }
+  init: function() {
+    this.clickListener();
+  },
+  
+  clickListener: function() {
+    var that = this;
+    $('#submit').bind('click', function() {
+      var value = that.getValue();
+      that.addItem(value);
+    });
+  },
+  
+  addItem: function(value) {
+    var template = '<li>' + value + '</li>';
+    $('#todos').append(template);
+  },
+  
+  getValue: function() {
+    return $('#todo').val();            
+  }
 };
+
+
+$(document).ready(function() {
+  Todo.init();
+});
