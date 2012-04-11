@@ -1,27 +1,23 @@
-var Todo = {
-  init: function() {
-    this.clickListener();
-  },
-  
-  clickListener: function() {
-    var that = this;
-    $('#submit').bind('click', function() {
-      var value = that.getValue();
-      that.addItem(value);
-    });
-  },
-  
-  addItem: function(value) {
-    var template = '<li>' + value + '</li>';
-    $('#todos').append(template);
-  },
-  
-  getValue: function() {
-    return $('#todo').val();            
-  }
-};
+$(document).ready(function(){
+  var getValue = function() {
+    return $("#todo").val();
+  };
 
+  var getCount = function() {
+    return $("#todos").children('li').length;
+  };
 
-$(document).ready(function() {
-  Todo.init();
+  var clearCurrentValue = function() {
+    $("#todo").val('');
+  };
+
+  $('#submit').bind('click', function() {
+    var text = getValue();
+    $('#todos').append('<li class="todo">' + text + '</li>');
+
+    clearCurrentValue();
+
+    var count = getCount();
+    $("#count").html(count);
+  });
 });
