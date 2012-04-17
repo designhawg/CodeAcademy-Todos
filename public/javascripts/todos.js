@@ -7,10 +7,7 @@ var Todo = {
   setupAddListener: function() {
     var that = this;
     $('#submit').bind('click', function() {
-      var value = that.getValue();
-      that.addTodo(value);
-      that.clearValue();
-      that.insertCount();
+      that.addTodoHandler();
     });
   },
 
@@ -21,6 +18,22 @@ var Todo = {
       that.deleteTodo(li);
       that.insertCount();
     });
+  },
+
+  addTodoHandler: function() {
+    var value = this.getValue();
+
+    if ( this.isValid(value) ) {
+      if ( this.currentError() ) {
+        this.removeError();
+      }
+      this.addTodo(value);
+      this.clearValue();
+      this.insertCount();
+    }
+    else {
+      this.displayError();
+    }
   },
 
   constructDeleteButton: function() {
@@ -39,6 +52,28 @@ var Todo = {
   
   insertCount: function() {
     $('#count').html(this.getCount());
+  },
+
+  removeError: function() {
+    $('#todo').removeClass('error');
+    this.toggleError();
+  },
+
+  displayError: function() {
+    $('#todo').addClass('error');
+    this.toggleError();
+  },
+
+  currentError: function() {
+    return this._currentError;
+  },
+
+  toggleError: function() {
+    return this._currentError = ( this._currentError ? false : true );
+  },
+
+  isValid: function(input) {
+    return input.match(/\S/) ? true : false;
   },
 
   getValue: function() {

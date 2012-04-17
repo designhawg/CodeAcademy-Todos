@@ -530,6 +530,8 @@ input {
 
 #todo {
   width:400px;
+  border: 1px solid #999;
+  outline: none;
 }
 
 #container h1 {
@@ -554,4 +556,9 @@ input {
 #count-wrapper h3,
 #count-wrapper p {
   display:inline;
+}
+
+/* Form Properties */
+#todo.error {
+  border: 1px solid red;
 }
