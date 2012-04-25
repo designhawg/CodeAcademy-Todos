@@ -575,3 +575,7 @@ input {
 #todo.error {
   border: 1px solid red;
 }
+
+#todos li.complete {
+  text-decoration: line-through;
+}
