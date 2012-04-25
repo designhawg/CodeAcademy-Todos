@@ -538,11 +538,24 @@ input {
   text-align:center;
 }
 
+#todos {
+  padding: 10px 0;
+  margin: 0;
+  width: 420px;
+}
+
 #todos li {
-  margin:10px 0;
+  margin:15px 0;
+  width: 100%;
+  list-style: none;
+}
+
+#todos li input {
+  margin-right: 10px;
 }
 
 #todos li span {
+  float: right;
   color:red;
   font-size:0.85em;
   padding-left: 15px;
